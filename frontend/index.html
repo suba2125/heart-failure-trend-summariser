@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Heart Failure Trend Summariser</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #f4f6f8;
+      }
+
+      header {
+        background: #1f2937;
+        color: white;
+        padding: 20px;
+      }
+
+      header h1 {
+        margin: 0;
+      }
+
+      .container {
+        padding: 25px;
+      }
+
+      .summary {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 25px;
+      }
+
+      .card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        flex: 1;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .card h3 {
+        margin-top: 0;
+      }
+
+      table {
+        width: 100%;
+        background: white;
+        border-collapse: collapse;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      th,
+      td {
+        padding: 14px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+      }
+
+      th {
+        background: #e5e7eb;
+      }
+
+      .high {
+        color: #b91c1c;
+        font-weight: bold;
+      }
+
+      .low {
+        color: #15803d;
+        font-weight: bold;
+      }
+
+      .review {
+        font-weight: bold;
+      }
+
+      button {
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background: #2563eb;
+        color: white;
+      }
+
+      button:hover {
+        background: #1d4ed8;
+      }
+
+      #patientDetail {
+        display: none;
+        margin-top: 30px;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .detail-box {
+        margin-top: 15px;
+        padding: 15px;
+        background: #f9fafb;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Heart Failure Trend Summariser</h1>
+      <p>Care Team Monitoring Dashboard</p>
+    </header>
+
+    <div class="container">
+      <!-- Summary Cards -->
+
+      <div class="summary">
+        <div class="card">
+          <h3>Total Patients</h3>
+          <h2>4</h2>
+        </div>
+
+        <div class="card">
+          <h3>High Priority</h3>
+          <h2>1</h2>
+        </div>
+
+        <div class="card">
+          <h3>Alert Reduction</h3>
+          <h2>75%</h2>
+        </div>
+      </div>
+
+      <!-- Patient Table -->
+
+      <h2>Patient Overview</h2>
+
+      <table>
+        <tr>
+          <th>Patient</th>
+          <th>Latest Weight</th>
+          <th>Weight Change</th>
+          <th>Trend</th>
+          <th>Priority</th>
+          <th>Action</th>
+        </tr>
+
+        <!-- P001 -->
+
+        <tr>
+          <td>P001</td>
+          <td>70.3 kg</td>
+          <td>+0.3 kg</td>
+          <td>No meaningful trend</td>
+          <td class="low">LOW</td>
+          <td>Continue monitoring</td>
+        </tr>
+
+        <!-- P002 -->
+
+        <tr>
+          <td>
+            <button onclick="showPatientDetail()">P002</button>
+          </td>
+
+          <td>70.4 kg</td>
+
+          <td>+2.4 kg</td>
+
+          <td>Persistent increasing trend</td>
+
+          <td class="high">HIGH</td>
+
+          <td class="review">Human clinical review</td>
+        </tr>
+
+        <!-- P003 -->
+
+        <tr>
+          <td>P003</td>
+          <td>75.2 kg</td>
+          <td>+0.2 kg</td>
+          <td>One-time spike resolved</td>
+          <td class="low">LOW</td>
+          <td>Continue monitoring</td>
+        </tr>
+
+        <!-- P004 -->
+
+        <tr>
+          <td>P004</td>
+          <td>65.3 kg</td>
+          <td>+0.3 kg</td>
+          <td>No meaningful trend</td>
+          <td class="low">LOW</td>
+          <td>Continue monitoring</td>
+        </tr>
+      </table>
+
+      <!-- P002 Patient Detail -->
+
+      <div id="patientDetail">
+        <h2>P002 — Patient Detail</h2>
+
+        <div class="detail-box">
+          <h3>Weight Information</h3>
+
+          <p>
+            <strong>Baseline Weight:</strong>
+            68.0 kg
+          </p>
+
+          <p>
+            <strong>Latest Weight:</strong>
+            70.4 kg
+          </p>
+
+          <p>
+            <strong>Weight Change:</strong>
+            +2.4 kg
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h3>Observed Pattern</h3>
+
+          <p>
+            Persistent increasing weight trend observed across recent readings.
+          </p>
+        </div>
+
+        <div class="detail-box">
+          <h3>Symptoms</h3>
+
+          <ul>
+            <li>Breathlessness: Yes</li>
+            <li>Swelling: Yes</li>
+            <li>Fatigue: Yes</li>
+          </ul>
+        </div>
+
+        <div class="detail-box">
+          <h3>Priority</h3>
+
+          <p class="high">HIGH</p>
+        </div>
+
+        <div class="detail-box">
+          <h3>Human Review</h3>
+
+          <p>Human clinical review recommended.</p>
+
+          <p>The system does not make a diagnosis or treatment decision.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+
+    <script>
+      function showPatientDetail() {
+        document.getElementById("patientDetail").style.display = "block";
+
+        document.getElementById("patientDetail").scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+    </script>
+  </body>
+</html>
