@@ -1,63 +1,64 @@
-# Heart Failure Trend Summariser
+# Heart-Failure Trend Summariser
 
-## Project Overview
-
-Heart-failure patients recovering at home after discharge
-may generate multiple daily readings and symptom reports.
-
-A simple threshold-based alert system can generate many
-low-value alerts and make it harder for care teams to
-identify meaningful changes.
-
-This project demonstrates a prototype Trend Summariser that
-groups recent readings, identifies persistent patterns,
-considers reported symptoms, and prioritises cases for
-human review.
+## Trend Summariser Prioritises Meaningful Change for Heart-Failure Patients Recovering At Home After Discharge
 
 ---
 
-## Problem Statement
+## 1. Project Overview
 
-Care teams may receive too many individual home-monitoring
-alerts.
+Heart-failure patients recovering at home may record daily measurements such as weight, blood pressure, heart rate, and symptoms.
 
-The goal is to reduce low-value alerts while highlighting
-meaningful changes that may require human review.
+A simple alert system may generate alerts whenever an individual reading crosses a fixed threshold. This can create unnecessary low-value alerts and make it harder for care teams to identify meaningful changes over several days.
 
----
+This project develops a **trend summariser** that focuses on meaningful patterns across multiple home-monitoring readings instead of reacting only to individual abnormal readings.
 
-## Objectives
-
-- Analyse repeated home readings.
-- Compare a simple baseline alert method with a trend-based method.
-- Identify persistent changes rather than isolated spikes.
-- Consider reported symptoms.
-- Prioritise patients for human review.
-- Reduce unnecessary alert volume.
-- Provide a simple care-team dashboard.
+The project is designed as a **decision-support prototype**. It does not diagnose patients, prescribe treatment, or make autonomous clinical decisions.
 
 ---
 
-## Project Structure
+## 2. Problem Statement
+
+The main problem is alert overload caused by treating every abnormal individual reading as equally important.
+
+For example, a patient may have one temporary weight increase because of measurement noise or a short-term fluctuation. A simple threshold model may generate an alert for this single reading.
+
+In contrast, a trend-based system can examine multiple days of data and symptoms to identify whether the change appears persistent.
+
+The goal is therefore to:
+
+- Reduce unnecessary low-value alerts.
+- Identify persistent changes over multiple days.
+- Consider symptoms together with weight trends.
+- Compare a simple threshold baseline with a trend-based approach.
+- Measure the performance of both approaches.
+- Keep human review in the decision-making process.
+
+---
+
+## 3. Project Objectives
+
+The project aims to:
+
+1. Build a baseline threshold-based alert system.
+2. Build a multi-factor trend summariser.
+3. Improve trend detection using Exponential Moving Average (EMA).
+4. Test the system using a larger synthetic dataset.
+5. Include missing reporting days and noisy sensor readings.
+6. Compare baseline and trend-based alerts.
+7. Calculate Precision, Recall, Specificity, and F1 Score.
+8. Test realistic edge cases.
+9. Maintain a human-in-the-loop safety boundary.
+
+---
+
+## 4. System Approach
+
+The project contains two main approaches.
+
+### 4.1 Baseline Model
+
+The baseline generates an alert when:
 
 ```text
-heart-failure-trend-summariser/
-
-├── backend/
-│   ├── baseline.py
-│   ├── trend_summariser.py
-│   ├── comparison.py
-│   ├── evaluation.py
-│   └── edge_cases.py
-│
-├── data/
-│   └── synthetic_patient_data.csv
-│
-├── docs/
-│   ├── patient_journeys.md
-│   ├── workflow.md
-│   └── error_analysis.md
-│
-└── frontend/
-    └── index.html
+Current Weight - Baseline Weight > 0.5 kg
 ```
